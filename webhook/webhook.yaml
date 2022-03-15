@@ -28,9 +28,3 @@ spec:
           https://webhook.site/2be34b4b-8a90-47cd-ba9f-a3e237e90765
       subscriptionID: 68e4d883-f793-4e78-8cb6-8a0b65da7c6d
       sendFinished: true
-    - type: sh.keptn.event.release.finished
-      requests:
-        - curl --request POST --data '{{.data.project}}'
-          https://webhook.site/2be34b4b-8a90-47cd-ba9f-a3e237e90765
-      subscriptionID: 1e32735a-5230-4fec-8681-9525b5a2628f
-      sendFinished: false
