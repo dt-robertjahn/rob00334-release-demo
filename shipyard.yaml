@@ -8,7 +8,6 @@ spec:
     sequences:
     - name: release
       tasks:
-      - name: release
       - name: deployment
         properties:
           deploymentstrategy: user_managed
@@ -26,8 +25,8 @@ spec:
       tasks:
       - name: approval
         properties:
-          pass: manual
-          warning: manual
+          pass: auto
+          warning: auto
       - name: deployment
         properties:
           deploymentstrategy: user_managed
