@@ -25,8 +25,8 @@ spec:
       tasks:
       - name: approval
         properties:
-          pass: auto
-          warning: auto
+          pass: automatic
+          warning: automatic
       - name: deployment
         properties:
           deploymentstrategy: user_managed
