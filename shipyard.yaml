@@ -10,7 +10,7 @@ spec:
       tasks:
       - name: release
         properties:
-          deploymentstrategy: user_managed1
+          deploymentstrategy: user_managed
       - name: deployment
         properties:
           deploymentstrategy: user_managed
