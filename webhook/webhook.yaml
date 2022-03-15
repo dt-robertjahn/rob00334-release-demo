@@ -4,15 +4,6 @@ metadata:
   name: webhook-configuration
 spec:
   webhooks:
-    - type: sh.keptn.event.deployment.triggered
-      requests:
-        - "curl --header 'Content-Type: application/json' --request POST --data
-          '{\"data\":{\"project\":\"{{.data.project}}\",\"service\":\"{{.data.s\
-          ervice}}\",\"stage\":\"{{.data.stage}}\"},\"shkeptncontext\":\"{{.shk\
-          eptncontext}}\",\"id\":\"{{.id}}\",\"type\":\"{{.type}}\"}'
-          http://34.215.238.225:8080/runtask"
-      subscriptionID: 8add2e8a-d8de-4130-b85b-64611c0b04aa
-      sendFinished: false
     - type: sh.keptn.event.test.triggered
       requests:
         - "curl --header 'Content-Type: application/json' --request POST --data
