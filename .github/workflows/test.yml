@@ -37,4 +37,4 @@ jobs:
         END
         )
         echo "json=$json"
-        curl -X POST "${{ secrets.KEPTN_API_URL }}/v1/event" -H "Content-Type: application/json" -H "accept: application/json" -H "x-token: ${{ secrets.KEPTN_API_TOKEN }}" -d "$json"
+        curl -X POST "${{ secrets.KEPTN_BASE_URL }}/api/v1/event" -H "Content-Type: application/json" -H "accept: application/json" -H "x-token: ${{ secrets.KEPTN_API_TOKEN }}" -d "$json"
