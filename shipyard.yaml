@@ -9,10 +9,6 @@ spec:
     - name: release
       tasks:
       - name: notify
-      - name: deployment
-      - name: test
-        properties:
       - name: evaluation
         properties:
           timeframe: "5m"
-      - name: updateissue
