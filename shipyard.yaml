@@ -9,6 +9,7 @@ spec:
     - name: release
       tasks:
       - name: notify
+      - name: deployment
       - name: evaluation
         properties:
           timeframe: "5m"
