@@ -31,7 +31,7 @@ pipelines:
               --arg sv $(read_json payload.json "service") \
               --arg sh $(read_json payload.json "shkeptncontext") \
               --arg id $(read_json payload.json "id") \
-              '{data:{project:$pr,stage:$st,service:$sv,status:"succeeded",result:"pass"},source:"jfrog-pipeline",specversion:"1.0",type:"sh.keptn.event.mytask-interactive.finished",shkeptncontext:$sh,triggeredid:$id}')"
+              '{data:{project:$pr,stage:$st,service:$sv,status:"succeeded",result:"pass"},source:"jfrog-pipeline",specversion:"1.0",type:"sh.keptn.event.deployment.finished",shkeptncontext:$sh,triggeredid:$id}')"
             - echo "$event_payload"
 
       - name: Send_Finish_Event
