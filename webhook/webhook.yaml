@@ -37,24 +37,6 @@ spec:
             key: bridgeUrl
       subscriptionID: e682f6c2-eaf8-4ede-a0fa-e5aa0bfb0993
       sendFinished: true
-    - type: sh.keptn.event.updateissue.triggered
-      requests:
-        - "curl --header 'Content-type: application/json' --request POST --data
-          '{\"jiraKey\":\"{{.data.release.jiraKey}}\",\"jiraMessage\":\"SLO
-          Evaluation for Project: {{.data.project}} Stage: {{.data.stage}}
-          Service:
-          {{.data.service}}\",\"result\":\"{{.data.result}}\",\"bridge\":\"{{.e\
-          nv.secret_bridge_url}}/evaluation/{{.shkeptncontext}}/{{.data.stage}}\
-          \"}'
-          https://automation.atlassian.com/pro/hooks/9be53cf516a9e3e0af08d3bd0c\
-          c215d77c0b985e"
-      envFrom:
-        - name: secret_bridge_url
-          secretRef:
-            name: bridge
-            key: url
-      subscriptionID: 5d9c0397-7e29-4a24-bdf2-dbcd2c307600
-      sendFinished: true
     - type: sh.keptn.event.deployment.triggered
       requests:
         - "curl --header 'Content-Type: application/json' --request POST --data
