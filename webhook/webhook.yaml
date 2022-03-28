@@ -37,17 +37,3 @@ spec:
             key: bridgeUrl
       subscriptionID: e682f6c2-eaf8-4ede-a0fa-e5aa0bfb0993
       sendFinished: true
-    - type: sh.keptn.event.deployment.triggered
-      requests:
-        - "curl --header 'Content-Type: application/json' --request POST --data
-          '{\"type\":\"{{.type}}\",\"project\":\"{{.data.project}}\",\"service\
-          \":\"{{.data.service}}\",\"stage\":\"{{.data.stage}}\",\"shkeptnconte\
-          xt\":\"{{.shkeptncontext}}\",\"id\":\"{{.id}}\"}'
-          https://{{.env.secret_jfrog_WEBHOOKURL}}"
-      envFrom:
-        - name: secret_jfrog_WEBHOOKURL
-          secretRef:
-            name: jfrog
-            key: WEBHOOKURL
-      subscriptionID: cbc3e38b-9bcb-4c26-ad0e-a353b174bd4b
-      sendFinished: false
