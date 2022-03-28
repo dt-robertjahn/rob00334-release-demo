@@ -1,0 +1,40 @@
+name: simulate a test
+on:
+  repository_dispatch:
+    types: 
+      - test
+jobs:
+  test:
+    name: Simulate a test
+    runs-on: ubuntu-latest
+    steps:
+    - name: run test
+      run: echo "Performing the test"
+    - name: finished event
+      run: |
+        json=$(cat <<-END
+            {
+              "data": {
+                "project":"${{ github.event.client_payload.project }}",
+                "stage": "${{ github.event.client_payload.stage}}",
+                "service": "${{ github.event.client_payload.service}}",
+                "status": "succeeded",
+                "result": "pass",
+                "test": {
+                  "testResults": "success",
+                  "testURL": "https://test-tool?testNumber=123"
+                }
+              },
+              "labels": {
+                "testURL": "https://test-tool?testNumber=123"
+              },
+              "source": "github-action",
+              "specversion": "1.0",
+              "type": "sh.keptn.event.test.finished",
+              "shkeptncontext": "${{ github.event.client_payload.shkeptncontext }}",
+              "triggeredid": "${{ github.event.client_payload.id }}"
+            }
+        END
+        )
+        echo "json=$json"
+        curl -X POST "${{ secrets.KEPTN_API_URL }}/v1/event" -H "Content-Type: application/json" -H "accept: application/json" -H "x-token: ${{ secrets.KEPTN_API_TOKEN }}" -d "$json"
