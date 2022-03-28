@@ -1,0 +1,13 @@
+apiVersion: webhookconfig.keptn.sh/v1alpha1
+kind: WebhookConfig
+metadata:
+  name: webhook-configuration
+spec:
+  webhooks:
+    - type: sh.keptn.event.notify.triggered
+      requests:
+        - curl --request POST --data
+          '{"project":"{{.data.project}}","service":"{{.data.service}}","stage":"{{.data.stage}}","type":"{{.type}}","jiraKey":"{{.data.release.jiraKey}}","jiraSummary":"{{.data.release.jiraSummary}}","jiraUrl":"{{.data.release.jiraUrl}}"}'
+          https://webhook.site/2be34b4b-8a90-47cd-ba9f-a3e237e90765
+      subscriptionID: a8c2b213-4eb3-4d4d-950c-f2fad8c07048
+      sendFinished: true
