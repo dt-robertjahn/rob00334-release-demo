@@ -11,29 +11,3 @@ spec:
           https://webhook.site/2be34b4b-8a90-47cd-ba9f-a3e237e90765
       subscriptionID: 38588eac-f2c6-45b3-880b-316f578d1d1f
       sendFinished: true
-    - type: sh.keptn.event.notify.triggered
-      requests:
-        - "curl --request POST --data 'payload={  \"blocks\":
-          [    {      \"type\" : \"section\",      \"text\" : {        \"type\":
-          \"mrkdwn\",        \"text\" : \"New JIRA ticket
-          {{.data.release.jiraKey}} to Deploy Code
-          Created\"      }    },    {      \"type\" : \"section\",      \"text\"
-          : {        \"type\": \"mrkdwn\",        \"text\" : \"*Project:*
-          {{.data.project}}\\n*Service:* {{.data.service}}\\n*Stage:*
-          {{.data.stage}}\\n*Type:* {{.type}}\\n*jiraSummary*:
-          {{.data.release.jiraSummary}}\\n*jiraUrl*:
-          {{.data.release.jiraUrl}}\\n*Bridge:*
-          {{.env.secret_slackwebhook_bridgeUrl}}/trace/{{.shkeptncontext}}\"      \
-          }    }  ]}'
-          https://hooks.slack.com/services/{{.env.secret_slackwebhook_token}}"
-      envFrom:
-        - name: secret_slackwebhook_token
-          secretRef:
-            name: slack-webhook
-            key: token
-        - name: secret_slackwebhook_bridgeUrl
-          secretRef:
-            name: slack-webhook
-            key: bridgeUrl
-      subscriptionID: e682f6c2-eaf8-4ede-a0fa-e5aa0bfb0993
-      sendFinished: true
