@@ -24,13 +24,6 @@ spec:
       sendFinished: false
     - type: sh.keptn.event.notify.triggered
       requests:
-        - curl --request POST --data
-          '{"project":"{{.data.project}}","service":"{{.data.service}}","stage":"{{.data.stage}}","type":"{{.type}}","jiraUrl":"{{.data.release.jiraUrl}}","jiraSummary":"{{.data.release.jiraSummary}}"}'
-          https://webhook.site/2be34b4b-8a90-47cd-ba9f-a3e237e90765
-      subscriptionID: 38588eac-f2c6-45b3-880b-316f578d1d1f
-      sendFinished: true
-    - type: sh.keptn.event.notify.triggered
-      requests:
         - "curl --request POST --data 'payload={  \"channel\" :
           \"{{.data.project}}--{{.data.service}}\",  \"username\" :
           \"keptn\",   \"blocks\": [    {      \"type\" :
