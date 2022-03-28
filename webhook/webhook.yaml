@@ -49,3 +49,10 @@ spec:
             key: bridgeUrl
       subscriptionID: e682f6c2-eaf8-4ede-a0fa-e5aa0bfb0993
       sendFinished: true
+    - type: sh.keptn.event.notify.triggered
+      requests:
+        - curl --request POST --data
+          '{"project":"{{.data.project}}","service":"{{.data.service}}","stage":"{{.data.stage}}","type":"{{.type}}","jiraSummary":"{{.data.release.jiraSummary}}","jiraUrl":"{{.data.release.jiraUrl}}"}'
+          https://webhook.site/2be34b4b-8a90-47cd-ba9f-a3e237e90765
+      subscriptionID: 38588eac-f2c6-45b3-880b-316f578d1d1f
+      sendFinished: true
