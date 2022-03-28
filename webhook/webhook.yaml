@@ -29,30 +29,3 @@ spec:
           https://webhook.site/2be34b4b-8a90-47cd-ba9f-a3e237e90765
       subscriptionID: 38588eac-f2c6-45b3-880b-316f578d1d1f
       sendFinished: true
-    - type: sh.keptn.event.notify.triggered
-      requests:
-        - "curl --request POST --data 'payload={  \"channel\" :
-          \"{{.data.project}}--{{.data.service}}\",  \"username\" :
-          \"keptn\",   \"blocks\": [    {      \"type\" :
-          \"section\",      \"text\" : {        \"type\":
-          \"mrkdwn\",        \"text\" : \"*New
-          Release:*\"      }    },    {      \"type\" :
-          \"section\",      \"text\" : {        \"type\":
-          \"mrkdwn\",        \"text\" : \"*Project:*
-          {{.data.project}}\\n*Stage:* {{.data.stage}}\\n*Service:*
-          {{.data.service}}\\n*Details:*
-          {{.env.secret_slackwebhook_bridgeUrl}}/trace/{{.shkeptncontext}}\\n*j\
-          iraUrl*: {{.data.release.jiraUrl}}\\n*jiraSummary*:
-          {{.data.release.jiraSummary}}\"      }    }  ]}'
-          https://hooks.slack.com/services/{{.env.secret_slackwebhook_token}}"
-      envFrom:
-        - name: secret_slackwebhook_token
-          secretRef:
-            name: slack-webhook
-            key: token
-        - name: secret_slackwebhook_bridgeUrl
-          secretRef:
-            name: slack-webhook
-            key: bridgeUrl
-      subscriptionID: e682f6c2-eaf8-4ede-a0fa-e5aa0bfb0993
-      sendFinished: true
