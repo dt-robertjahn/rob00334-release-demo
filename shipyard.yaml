@@ -8,6 +8,7 @@ spec:
     sequences:
     - name: release
       tasks:
+      - name: notify
       - name: deployment
         properties:
           deploymentstrategy: user_managed
