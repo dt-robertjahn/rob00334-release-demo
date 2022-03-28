@@ -5,7 +5,7 @@ resources:
       webhookName: IncomingWebhookIntegration
 
 pipelines:
-  - name: slo_pipeline
+  - name: release_demo_pipeline
     configuration:
       environmentVariables:
         readOnly:
