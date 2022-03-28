@@ -51,3 +51,20 @@ spec:
             key: WEBHOOKURL
       subscriptionID: 246b27aa-8f04-47ab-877f-1f10e4ec0a0a
       sendFinished: false
+    - type: sh.keptn.event.test.triggered
+      requests:
+        - "curl --header 'Authorization: token
+          {{.env.secret_githubsecret_GITHUBTOKEN}}' --request POST --data
+          '{\"event_type\":\"test\",\"client_payload\":{\"type\":\"{{.type}}\",\
+          \"project\":\"{{.data.project}}\",\"service\":\"{{.data.service}}\",\
+          \"stage\":\"{{.data.stage}}\",\"shkeptncontext\":\"{{.shkeptncontext}}\
+          \",\"id\":\"{{.id}}\"}}'
+          https://api.github.com/repos/dt-robertjahn/rob00334-release-demo/disp\
+          atches"
+      envFrom:
+        - name: secret_githubsecret_GITHUBTOKEN
+          secretRef:
+            name: github-secret
+            key: GITHUBTOKEN
+      subscriptionID: 690a761a-dda0-4305-9513-aaf5571cef0e
+      sendFinished: false
