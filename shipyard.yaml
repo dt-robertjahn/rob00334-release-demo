@@ -21,7 +21,7 @@ spec:
     sequences:
     - name: release
       triggeredOn:
-      - event: staging.release.finished
+      - event: staging.release.finished1
       tasks:
       - name: approval
         properties:
