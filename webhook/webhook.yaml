@@ -22,10 +22,3 @@ spec:
           http://34.215.238.225:8080/runtask"
       subscriptionID: 8add2e8a-d8de-4130-b85b-64611c0b04aa
       sendFinished: false
-    - type: sh.keptn.event.notify.triggered
-      requests:
-        - curl --request POST --data
-          '{"project":"{{.data.project}}","service":"{{.data.service}}","stage":"{{.data.stage}}","type":"{{.type}}","jiraUrl":"{{.release.jiraUrl}}","jiraSummary":"{{.release.jiraSummary}}"}'
-          https://webhook.site/2be34b4b-8a90-47cd-ba9f-a3e237e90765
-      subscriptionID: 38588eac-f2c6-45b3-880b-316f578d1d1f
-      sendFinished: true
