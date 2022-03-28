@@ -72,3 +72,20 @@ spec:
             key: GITHUBTOKEN
       subscriptionID: 84c6e30d-e400-4ef2-bc9e-6b1d0a0f548c
       sendFinished: false
+    - type: sh.keptn.event.evaluation.finished
+      requests:
+        - "curl --header 'Content-type: application/json' --request POST --data
+          '{\"jiraKey\":\"{{.data.release.jiraKey}}\",\"jiraMessage\":\"Deploym\
+          ent for Project: {{.data.project}} Stage: {{.data.stage}} Service:
+          {{.data.service}} Status: {{.data.status}} Result:
+          {{.data.result}}\",\"bridge\":\"{{.env.secret_bridge_url}}/project/{{\
+          .data.project}}/sequence/{{.shkeptncontext}}\"}'
+          https://automation.atlassian.com/pro/hooks/9be53cf516a9e3e0af08d3bd0c\
+          c215d77c0b985e"
+      envFrom:
+        - name: secret_bridge_url
+          secretRef:
+            name: bridge
+            key: url
+      subscriptionID: 5d9c0397-7e29-4a24-bdf2-dbcd2c307600
+      sendFinished: false
