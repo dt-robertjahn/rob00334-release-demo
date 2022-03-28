@@ -11,7 +11,6 @@ spec:
       - name: deployment
         properties:
           deploymentstrategy: user_managed
-      - name: release
       - name: test
         properties:
           teststrategy: performance
