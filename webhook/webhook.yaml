@@ -90,15 +90,3 @@ spec:
             key: url
       subscriptionID: 5d9c0397-7e29-4a24-bdf2-dbcd2c307600
       sendFinished: true
-    - type: sh.keptn.event.deployment.triggered
-      requests:
-        - curl --request POST --data
-          '{"type":"{{.type}}","project":"{{.data.project}}","service":"{{.data.service}}","stage":"{{.data.stage}}","shkeptncontext":"{{.shkeptncontext}}","id":"{{.id}}"}'
-          https://{{.env.secret_jfrog_WEBHOOKURL}}
-      envFrom:
-        - name: secret_jfrog_WEBHOOKURL
-          secretRef:
-            name: jfrog
-            key: WEBHOOKURL
-      subscriptionID: cbc3e38b-9bcb-4c26-ad0e-a353b174bd4b
-      sendFinished: false
