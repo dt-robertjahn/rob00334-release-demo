@@ -1,0 +1,47 @@
+resources:
+  - name: incoming_webhook
+    type: IncomingWebhook
+    configuration:
+      webhookName: IncomingWebhookIntegration
+
+pipelines:
+  - name: slo_pipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          KEPTN_PROJECT: "release-demo"
+          KEPTN_SERVICE: "casdemoapp"
+          KEPTN_STAGE: "staging"
+
+    steps:
+
+      - name: Processing_Incoming_Webhook
+        type: Bash
+        configuration:
+          affinityGroup: Cloud_Automation_Webhook
+          inputResources:
+            - name: incoming_webhook
+        execution:
+          onExecute:
+            - echo "$res_myIWH_payload" | jq '.' > payload.json
+            - |
+              add_run_variables my_payload="$(jq -n \
+              --arg pr $(read_json payload.json "project") \
+              --arg st $(read_json payload.json "stage") \
+              --arg sv $(read_json payload.json "service") \
+              --arg sh $(read_json payload.json "shkeptncontext") \
+              --arg id $(read_json payload.json "id") \
+              '{data:{project:$pr,stage:$st,service:$sv,status:"succeeded",result:"pass"},source:"cas-quickstart",specversion:"1.0",type:"sh.keptn.event.mytask-interactive.finished",shkeptncontext:$sh,triggeredid:$id}')"
+            - echo "$my_payload"
+
+      - name: Send_Finish_Event
+        type: Bash
+        configuration:
+          affinityGroup: Cloud_Automation_Webhook
+          integrations:
+            - name: rob00334Cred
+          inputSteps:
+            - name: Processing_Incoming_Webhook
+        execution:
+          onExecute:
+            - 'curl -X POST "$int_rob00334Cred_BASE_URL/api/v1/event" -H "accept: application/json" -H "x-token: $int_rob00334Cred_API_TOKEN" -H "Content-Type: application/json" -d "$my_payload"'
