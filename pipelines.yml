@@ -44,4 +44,4 @@ pipelines:
             - name: Processing_Incoming_Webhook
         execution:
           onExecute:
-            - 'curl -X POST "$int_rob00334Cred_BASE_URL/api/v1/event" -H "accept: application/json" -H "x-token: $int_rob00334Cred_API_TOKEN" -H "Content-Type: application/json" -d "$event_payload"'
+            - 'curl -X POST "$int_rob00334Cred_BASE_URLapi/v1/event" -H "accept: application/json" -H "x-token: $int_rob00334Cred_API_TOKEN" -H "Content-Type: application/json" -d "$event_payload"'
