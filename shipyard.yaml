@@ -10,28 +10,9 @@ spec:
       tasks:
       - name: notify
       - name: deployment
-        properties:
-          deploymentstrategy: user_managed
       - name: test
         properties:
-          teststrategy: performance
       - name: evaluation
         properties:
           timeframe: "5m"
       - name: updateissue
-  - name: production
-    sequences:
-    - name: release
-      triggeredOn:
-      - event: staging.release.finished1
-      tasks:
-      - name: approval
-        properties:
-          pass: automatic
-          warning: automatic
-      - name: deployment
-        properties:
-          deploymentstrategy: user_managed
-      - name: evaluation
-        properties:
-          timeframe: "5m"
