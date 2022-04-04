@@ -8,6 +8,9 @@ spec:
     sequences:
     - name: release
       tasks:
+      - name: gitlab
+    - name: release1
+      tasks:
       - name: notify
       - name: evaluation
         properties:
