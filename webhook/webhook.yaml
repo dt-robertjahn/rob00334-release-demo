@@ -86,20 +86,3 @@ spec:
             key: url
       subscriptionID: 812e6b75-079a-4331-88dd-9e92fc70f9de
       sendFinished: true
-    - type: sh.keptn.event.gitlab.triggered
-      requests:
-        - "curl --header 'Private-Token: {{.env.secret_gitlab_accesstoken}}'
-          --header 'Content-Type: application/json' --request POST --data
-          '{\"ref\":\"master\",\"variables\":[{\"key\":\"CA_PROJECT\",\"value\":\
-          \"{{.data.project}}\"},{\"key\":\"CA_STAGE\",\"value\":\"{{.data.stag\
-          e}}\"},{\"key\":\"CA_SERVICE\",\"value\":\"{{.data.service}}\"},{\"key\
-          \":\"CA_SHKEPTNCONTEXT\",\"value\":\"{{.shkeptncontext}}\"},{\"key\":\
-          \"CA_ID\",\"value\":\"{{.id}}\"}]}'
-          https://gitlab.com/api/v4/projects/35073004/pipeline"
-      envFrom:
-        - name: secret_gitlab_accesstoken
-          secretRef:
-            name: gitlab
-            key: access-token
-      subscriptionID: 26efbe45-9ca5-4ac7-bc4d-18d11048aeae
-      sendFinished: false
