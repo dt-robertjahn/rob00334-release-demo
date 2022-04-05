@@ -1,3 +1,4 @@
+# https://docs.github.com/en/actions/learn-github-actions/environment-variables
 name: simulate a test
 on:
   repository_dispatch:
@@ -22,11 +23,12 @@ jobs:
                 "result": "pass",
                 "test": {
                   "testResults": "success",
-                  "testURL": "https://test-tool?testNumber=123"
+                  "testToolURL": "https://test-tool?testNumber=123",
+                  "gitHubURL": "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
                 }
               },
               "labels": {
-                "testURL": "https://test-tool?testNumber=123"
+                "gitHubURL": "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
               },
               "source": "github-action",
               "specversion": "1.0",
