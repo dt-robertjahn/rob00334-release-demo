@@ -47,6 +47,7 @@ pipelines:
               END
               )"
               echo "event_payload = $event_payload"
+              printenv
 
       - name: Send_Finish_Event
         type: Bash
