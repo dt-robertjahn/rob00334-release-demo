@@ -8,22 +8,6 @@ spec:
     sequences:
     - name: release
       tasks:
-      - name: notify
-      - name: evaluation
-        properties:
-          timeframe: "5m"
-      - name: updateissue
-  - name: production
-    sequences:
-    - name: release
-      triggeredOn:
-      - event: staging.release.finished
-      tasks:
-      - name: approval
-        properties:
-          pass: manual
-          warning: manual
-      - name: test
       - name: evaluation
         properties:
           timeframe: "5m"
