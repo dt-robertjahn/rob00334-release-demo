@@ -22,7 +22,7 @@ pipelines:
             - id=$(read_json payload.json "id")
             - shkeptncontext=$(read_json payload.json "shkeptncontext")
             - |
-              add_run_variables event_payload=$(cat <<-END
+              add_run_variables event_payload="$(cat <<-END
                 {
                   "data": {
                     "project": "$project",
@@ -44,7 +44,7 @@ pipelines:
                   "triggeredid": "$id"
                 }
               END
-              )
+              )"
               echo "event_payload = $event_payload"
 
       - name: Send_Finish_Event
