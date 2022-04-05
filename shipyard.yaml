@@ -21,8 +21,8 @@ spec:
       tasks:
       - name: approval
         properties:
-          pass: automatic
-          warning: automatic
+          pass: manual
+          warning: manual
       - name: test
       - name: evaluation
         properties:
