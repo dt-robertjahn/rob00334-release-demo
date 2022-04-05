@@ -8,6 +8,11 @@ spec:
     sequences:
     - name: release
       tasks:
+      - name: test
+  - name: staging1
+    sequences:
+    - name: release
+      tasks:
       - name: notify
       - name: deployment
       - name: test
@@ -19,7 +24,7 @@ spec:
     sequences:
     - name: release
       triggeredOn:
-      - event: staging.release.finished
+      - event: staging1.release.finished
       tasks:
       - name: approval
         properties:
