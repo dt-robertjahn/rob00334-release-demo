@@ -21,6 +21,7 @@ pipelines:
             - service=$(read_json payload.json "service")
             - id=$(read_json payload.json "id")
             - shkeptncontext=$(read_json payload.json "shkeptncontext")
+            - jfrogUrl=$(echo $step_url | cut -d? -f1)
             - |
               add_run_variables event_payload="$(cat <<-END
                 {
@@ -31,10 +32,10 @@ pipelines:
                     "status": "succeeded",
                     "result": "pass",
                     "deployment": {
-                      "jfrogUrl": "$step_url"
+                      "jfrogUrl": "$jfrogUrl"
                     },
                     "labels": {
-                      "jfrogUrl": "$step_url"
+                      "jfrogUrl": "$jfrogUrl"
                     }
                   },
                   "source": "jfrog-pipeline",
