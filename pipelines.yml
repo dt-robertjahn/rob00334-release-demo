@@ -15,13 +15,19 @@ pipelines:
             - name: incoming_webhook
         execution:
           onExecute:
+            - echo "$res_incoming_webhook_payload" | jq '.' > payload.json
+            - project=$(read_json payload.json "project")
+            - stage=$(read_json payload.json "stage")
+            - service=$(read_json payload.json "service")
+            - id=$(read_json payload.json "id")
+            - shkeptncontext=$(read_json payload.json "shkeptncontext")
             - |
-              payload=$(cat <<-END
+              event_payload=$(cat <<-END
                 {
                   "data": {
-                    "project": "$pr",
-                    "stage": "$st",
-                    "service": "$sv",
+                    "project": "$project",
+                    "stage": "$stage",
+                    "service": "$service",
                     "status": "succeeded",
                     "result": "pass",
                     "deployment": {
@@ -34,22 +40,12 @@ pipelines:
                   "source": "jfrog-pipeline",
                   "specversion": "1.0",
                   "type": "sh.keptn.event.deployment.finished",
-                  "shkeptncontext": "$sh",
+                  "shkeptncontext": "$shkeptncontext",
                   "triggeredid": "$id"
                 }
               END
               )
-              echo "payload = $payload"
-            - echo "$res_incoming_webhook_payload" | jq '.' > payload.json
-            - |
-              add_run_variables event_payload="$(jq -n \
-              --arg pr $(read_json payload.json "project") \
-              --arg st $(read_json payload.json "stage") \
-              --arg sv $(read_json payload.json "service") \
-              --arg sh $(read_json payload.json "shkeptncontext") \
-              --arg id $(read_json payload.json "id") \
-              $payload
-            - echo "$event_payload"
+              echo "event_payload = $event_payload"
 
       - name: Send_Finish_Event
         type: Bash
