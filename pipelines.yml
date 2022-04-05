@@ -6,15 +6,7 @@ resources:
 
 pipelines:
   - name: release_demo_pipeline
-    configuration:
-      environmentVariables:
-        readOnly:
-          KEPTN_PROJECT: "release-demo"
-          KEPTN_SERVICE: "casdemoapp"
-          KEPTN_STAGE: "staging"
-
     steps:
-
       - name: Processing_Incoming_Webhook
         type: Bash
         configuration:
@@ -23,6 +15,31 @@ pipelines:
             - name: incoming_webhook
         execution:
           onExecute:
+            - |
+              payload=$(cat <<-END
+                {
+                  "data": {
+                    "project": "$pr",
+                    "stage": "$st",
+                    "service": "$sv",
+                    "status": "succeeded",
+                    "result": "pass",
+                    "deployment": {
+                      "jfrogUrl": "$step_url"
+                    },
+                    "labels": {
+                      "jfrogUrl": "$step_url"
+                    }
+                  },
+                  "source": "jfrog-pipeline",
+                  "specversion": "1.0",
+                  "type": "sh.keptn.event.deployment.finished",
+                  "shkeptncontext": "$sh",
+                  "triggeredid": "$id"
+                }
+              END
+              )
+              echo "payload = $payload"
             - echo "$res_incoming_webhook_payload" | jq '.' > payload.json
             - |
               add_run_variables event_payload="$(jq -n \
@@ -31,7 +48,7 @@ pipelines:
               --arg sv $(read_json payload.json "service") \
               --arg sh $(read_json payload.json "shkeptncontext") \
               --arg id $(read_json payload.json "id") \
-              '{data:{project:$pr,stage:$st,service:$sv,status:"succeeded",result:"pass", "labels": { "jfrogUrl": "'$step_url'" },"deployment": { "jfrogUrl": "'$step_url'" } },source:"jfrog-pipeline",specversion:"1.0",type:"sh.keptn.event.deployment.finished",shkeptncontext:$sh,triggeredid:$id}')"
+              $payload
             - echo "$event_payload"
 
       - name: Send_Finish_Event
