@@ -31,14 +31,8 @@ pipelines:
               --arg sv $(read_json payload.json "service") \
               --arg sh $(read_json payload.json "shkeptncontext") \
               --arg id $(read_json payload.json "id") \
-              '{data:{project:$pr,stage:$st,service:$sv,status:"succeeded",result:"pass"},source:"jfrog-pipeline",specversion:"1.0",type:"sh.keptn.event.deployment.finished",shkeptncontext:$sh,triggeredid:$id}')"
+              '{data:{project:$pr,stage:$st,service:$sv,status:"succeeded",result:"pass", "labels": { "jfrogUrl": "$step_url" },"deployment": { "jfrogUrl": "$step_url" } },source:"jfrog-pipeline",specversion:"1.0",type:"sh.keptn.event.deployment.finished",shkeptncontext:$sh,triggeredid:$id}')"
             - echo "$event_payload"
-            - echo "https://dtdemos.jfrog.io/ui/pipelines/myPipelines/default/release_demo_pipeline"
-            - echo "pipelines_api_url = $pipelines_api_url"
-            - echo "project_name = $project_name"
-            - echo "run_id = $run_id"
-            - echo "project_name/pipeline_name = $project_name/$pipeline_name"
-            - echo "step_url = $step_url"
 
       - name: Send_Finish_Event
         type: Bash
