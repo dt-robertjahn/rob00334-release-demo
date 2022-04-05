@@ -28,7 +28,7 @@ jobs:
                 },
                 "labels": {
                   "gitHubURL": "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-                },
+                }
               },
               "source": "github-action",
               "specversion": "1.0",
