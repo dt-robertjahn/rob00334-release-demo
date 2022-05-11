@@ -10,6 +10,7 @@ spec:
       tasks:
       - name: notify
       - name: deployment
+      - name: setfeature
       - name: test
       - name: evaluation
         properties:
