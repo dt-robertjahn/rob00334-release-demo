@@ -89,6 +89,7 @@ spec:
             key: access-token
       subscriptionID: 26efbe45-9ca5-4ac7-bc4d-18d11048aeae
       sendFinished: false
+      sendStarted: false
     - type: sh.keptn.event.setfeature.triggered
       requests:
         - "curl --header 'Authorization: token
